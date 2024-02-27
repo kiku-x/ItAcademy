@@ -96,48 +96,36 @@ Podem utilitzar tots aquests operadors amb WHERE:
 `IN`			To specify multiple possible values for a column
 
 
-En el cas de BETWEEEN ho farem així. Aqui mostrarem les ciutats amb una població entre 1.000 i 10.000 habitants.
+En el cas de `BETWEEEN` ho farem així. Aqui mostrarem les ciutats amb una població entre 1.000 i 10.000 habitants.
 ```ruby
 SELECT name, population
 FROM City
 WHERE Population BETWEEN 1000 AND 100000;
 ```
 
-LIKE
-Return all customers from a city that starts with 'L' followed by one wildcard character, then 'nd' and then two wildcard characters:
-SELECT * FROM Customers
-WHERE city LIKE 'L_nd__';
+Per `LIKE` ho farem així. Buscarem noms de ciutats que comencin amb la lletra L.
+```ruby
+SELECT name, population
+FROM City
+WHERE name LIKE 'L%';
+```
+El carácter `%L`ens indica que despres de la L hi pot haber un o varis carácters. Aquest carácter `%`s'anomena **Wildcard** i n'hi ha de varis tipus.
 
-Return all customers from a city that contains the letter 'L':
-SELECT * FROM Customers
-WHERE city LIKE '%L%';
+`%`	Representa un zero o un o més carácters. *Ex:* `'L%'`
+
+`_`	Representa un sol carácter. *Ex:* `'L_nd__'`
+
+`[]`	Representa qualsevol carácter dins dels brackets. *(Not supported in PostgreSQL and MySQL databases)*
+
+`^`	Represents qualsevol carácter que no estigui dins dels brackets. *(Not supported in PostgreSQL and MySQL databases)*
+
+`-`	Representa qualsevol carácter dins del rango especificat. *(Not supported in PostgreSQL and MySQL databases)*
 
 
-IN
-The IN operator allows you to specify multiple values in a WHERE clause.
-The IN operator is a shorthand for multiple OR conditions.
-
-Return all customers from 'Germany', 'France', or 'UK'
+### IN
+L'operador `IN` es un abreviador de `OR`. Permet especificar diferents valors dins de les clausules `WHERE` 
+En aquest cas mostrarem tots els clients de Alemanya, França i Gran Bretanya:
+```ruby
 SELECT * FROM Customers
 WHERE Country IN ('Germany', 'France', 'UK');
-
-
-BETWEEN
-The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates.
-The BETWEEN operator is inclusive: begin and end values are included. 
-
-Selects all products with a price between 10 and 20:
-SELECT * FROM Products
-WHERE Price BETWEEN 10 AND 20;
-
-
-
- Here is a simple flow chart:
-
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
 ```

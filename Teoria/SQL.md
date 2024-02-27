@@ -65,7 +65,7 @@ ORDER BY population ASC or DESC
 LIMIT 200;
 ```
 
-### WHERE
+### Where
 > Serveix per Per Filtrar.
 
 En aquest cas em mostrarà les ciutats amb una població superior als 100.000 habitants.
@@ -124,8 +124,33 @@ El carácter `%L`ens indica que despres de la L hi pot haber un o varis carácte
 
 ### IN
 L'operador `IN` es un abreviador de `OR`. Permet especificar diferents valors dins de les clausules `WHERE` 
-En aquest cas mostrarem tots els clients de Alemanya, França i Gran Bretanya:
+En aquest cas mostrarem totes les ciutats de Alemanya, França i Gran Bretanya:
 ```ruby
-SELECT * FROM Customers
+SELECT *
+FROM city
 WHERE Country IN ('Germany', 'France', 'UK');
+```
+
+## Joins
+Una clàusula JOIN s'utilitza per combinar files de dues o més taules, basant-se en alguna columna que les pugui relacionar entre elles.
+Hi ha varis tipus de JOINS:
+
+`JOIN`: Retorna registres que tenen valors coincidents a les dues taules.
+![alt text](https://www.w3schools.com/sql/img_inner_join.png)
+
+`LEFT JOIN`: retorna tots els registres de la taula de l'esquerra i els registres coincidents de la taula de la dreta.
+![alt text](https://www.w3schools.com/sql/img_left_join.png)
+
+`RIGHT JOIN`: retorna tots els registres de la taula de la dreta i els registres coincidents de la taula de l'esquerra.
+![alt text](https://www.w3schools.com/sql/img_right_join.png)
+
+`FULL JOIN`: retorna tots els registres quan hi ha una coincidència a la taula dreta o esquerra.
+![alt text](https://www.w3schools.com/sql/img_full_outer_join.png)
+
+Per exemple, ara ajuntarem les taules de la informacio de les ciutats i dels paisos. D'aquesta manera podem visualitzar la informació de la ciutat i el seu pais corresponent en una sola taula.
+```ruby
+SELECT name, population
+FROM City
+JOIN Country
+ON city.country_id = country.id
 ```

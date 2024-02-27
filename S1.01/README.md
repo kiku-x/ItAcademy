@@ -2,6 +2,12 @@ Los ejercicios estan divididos en tres niveles de dificultad.
 
 <Details>
 <Summary>NIVELL 1</Summary>
+
+Exercici 1: A partir dels documents adjunts (estructura_dades i dades_introduir), importa les dues taules. Mostra les característiques principals de l'esquema creat i explica les diferents taules i variables que existeixen. Assegura't d'incloure un diagrama que il·lustri la relació entre les diferents taules i variables.
+  ![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+
+
+
 Exercici 2: Realitza la següent consulta: Has d'obtenir el nom, email i país de cada companyia, ordena les dades en funció del nom de les companyies.
 
 ```

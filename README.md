@@ -8,6 +8,8 @@
 [SPRINT 2](https://github.com/kiku-x/ItAcademy/tree/main/S2.01)
 
 ## Teoria📚
-[SPRINT 1](https://github.com/kiku-x/ItAcademy/tree/main/S1.01)
+[SQL](https://github.com/kiku-x/ItAcademy/blob/main/Teoria/SQL.md)
 
-[SPRINT 2](https://github.com/kiku-x/ItAcademy/tree/main/S2.01)
+[POWER BI](https://github.com/kiku-x/ItAcademy/blob/main/Teoria/SQL.md)
+
+[PYTHON](https://github.com/kiku-x/ItAcademy/blob/main/Teoria/SQL.md)

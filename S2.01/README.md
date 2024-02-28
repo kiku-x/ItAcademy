@@ -83,7 +83,7 @@ ON company_id = company.id
 WHERE country = ( #subquery per saber el pais de l'empresa
 	SELECT country
     FROM company
-    WHERE company_name = "Amet Institute"
+    WHERE company_name = "Non Institute"
 	)
 ;
 ```

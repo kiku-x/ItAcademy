@@ -42,17 +42,15 @@ HAVING Copies > 1;
 SELECT DATE(timestamp) AS Data, SUM(amount) AS Sumatoria
 FROM transaction
 GROUP BY Data
-HAVING COUNT(*) >= 5
 ORDER BY Sumatoria DESC
-LIMIT 1;
+LIMIT 5;
 
 #Exercici 3: En quin dia es van realitzar les cinc vendes de menor valor? Mostra la data de la transacció i la sumatòria de la quantitat de diners.
 SELECT DATE(timestamp) AS Data, SUM(amount) AS Sumatoria
 FROM transaction
 GROUP BY Data
-HAVING COUNT(*) >= 5
 ORDER BY Sumatoria ASC
-LIMIT 1;
+LIMIT 5;
 
 #Exercici 4: Quina és la mitjana de despesa per país? Presenta els resultats ordenats de major a menor mitjà.
 SELECT company.country AS Pais, AVG(transaction.amount) AS Despesa_Mitjana

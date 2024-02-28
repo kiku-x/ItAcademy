@@ -71,9 +71,8 @@ Exercici 2 En quin dia es van realitzar les cinc vendes més costoses? Mostra la
 SELECT DATE(timestamp) AS Data, SUM(amount) AS Sumatoria
 FROM transaction
 GROUP BY Data
-HAVING COUNT(*) >= 5
 ORDER BY Sumatoria DESC
-LIMIT 1;
+LIMIT 5;
 ```
 
 
@@ -82,9 +81,8 @@ Exercici 3: En quin dia es van realitzar les cinc vendes de menor valor? Mostra 
 SELECT DATE(timestamp) AS Data, SUM(amount) AS Sumatoria
 FROM transaction
 GROUP BY Data
-HAVING COUNT(*) >= 5
 ORDER BY Sumatoria ASC
-LIMIT 1;
+LIMIT 5;
 ```
 
 

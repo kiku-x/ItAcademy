@@ -5,27 +5,13 @@ Los ejercicios estan divididos en tres niveles de dificultad.
 
 Exercici 1: Mostra totes les transaccions realitzades per empreses d'Alemanya.
 
-Sin subquery
 ```
 SELECT transaction.id
 FROM transaction
 LEFT JOIN company
 ON company_id = company.id
 WHERE company.country = "Germany";
-```
-
-Con subquery(no acabada)
-```
-SELECT transaction.id, country
-FROM transaction
-LEFT JOIN company
-ON company_id = company.id
-WHERE ( #subquery per trobar totes les empreses alemanes
-	SELECT company.country
-    FROM company
-    WHERE company.country = "Germany"
-	);
- ```   
+```  
     
 Exercici 2: Màrqueting està preparant alguns informes de tancaments de gestió, et demanen que els passis un llistat de les
 empreses que han realitzat transaccions per una suma superior a la mitjana de totes les transaccions.
@@ -37,8 +23,7 @@ ON company.id = company_id
 WHERE amount > ( #subquery per calcular la mitjana de totes les transaccions
 	SELECT AVG(transaction.amount)
 	FROM transaction
-    )
-;
+    );
 ```
 
 Exercici 3: El departament de comptabilitat va perdre la informació de les transaccions realitzades per una empresa,

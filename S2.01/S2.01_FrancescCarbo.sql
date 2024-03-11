@@ -4,12 +4,17 @@ SELECT transaction.id
 FROM transaction
 LEFT JOIN company -- Fusionem la taula company amb la taula transaction.
 ON company_id = company.id
-WHERE company.country = "Germany"; -- Apliquem el filtre on només volem que es mostrin les transaccions que permtanyes a empreses de Germany.
+WHERE company.country = (
+	SELECT company.country
+	FROM company 
+	WHERE company.country = "Germany" -- Apliquem el filtre on només volem que es mostrin les transaccions que permtanyes a empreses de Germany.
+    LIMIT 1
+    );
 
     
 /*Exercici 2: Màrqueting està preparant alguns informes de tancaments de gestió, et demanen que els passis un llistat de les
 empreses que han realitzat transaccions per una suma superior a la mitjana de totes les transaccions.*/
-SELECT company_name
+SELECT DISTINCT company_name
 FROM company
 LEFT JOIN transaction
 ON company.id = company_id
@@ -55,7 +60,7 @@ ON company_id = company.id
 WHERE country = ( -- Filtre per mostrar els resultats on el pais sigui el mateix al obtingut per la subquery.
 	SELECT country --subquery per saber mostrar el pais de l'empresa Amet Institute.
 	FROM company
-	WHERE company_name = "Amet Institute"
+	WHERE company_name = "Non Institute"
 	);
 
 

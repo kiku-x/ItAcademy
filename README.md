@@ -11,6 +11,9 @@
 
 [SPRINT 4](https://github.com/kiku-x/ItAcademy/tree/main/S4.01)
 
+[SPRINT 5](https://github.com/kiku-x/ItAcademy/tree/main/S5.01)
+
+[SPRINT 6](https://github.com/kiku-x/ItAcademy/tree/main/S6.01)
 
 ## Teoria📚
 [SQL](https://github.com/kiku-x/ItAcademy/blob/main/Teoria/SQL.md)

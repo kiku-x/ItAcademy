@@ -112,12 +112,11 @@ FOREIGN KEY (user_id) REFERENCES users_uk(id);
 
 
 /*Exercici 1: Realitza una subconsulta que mostri tots els usuaris amb més de 30 transaccions utilitzant almenys 2 taules.*/
-SELECT users.name, COUNT(transactions.id) AS Transaccions -- Select dels camps que volem que es mostrin.
+SELECT users.name, users.surname, users.phone, email, birth_date, country, city, postal_code, address, COUNT(transactions.id) AS transaction_count -- Select dels camps que volem que es mostrin.
 FROM sprint4.users -- Taula d'on obtenim les dades.
-JOIN sprint4.transactions -- Join amb la taula transactions.
-ON users.id = transactions.user_id
-GROUP BY users.name
-HAVING COUNT(transactions.id) > 30; -- Filtre per contar els id de transaccio i despres agrupar-los per users.id
+JOIN sprint4.transactions ON users.id = transactions.user_id -- Join amb la taula transactions.
+GROUP BY users.name, users.surname, users.phone, email, birth_date, country, city, postal_code, address
+HAVING COUNT(transactions.id) > 30;
 
 
 
@@ -136,19 +135,29 @@ GROUP BY credit_cards.iban;
 
 /*NIVELL 2
 Crea una nova taula que reflecteixi l'estat de les targetes de crèdit basat en si les últimes tres transaccions van ser declinades i genera la següent consulta:*/
-SELECT credit_cards.id AS Card_ID,
-CASE -- Utilitzem case per fer una columna condicional provisional
-	WHEN COUNT(transactions.declined) > 3 -- Quan el contador de transaccions declinades=1 sigui superior a 3
-	THEN "Active" -- Es mostrarà Active
-	ELSE "Not active" -- Si no es compleig la condicional, es msotrarà Not Active.
-END AS "Card Status" -- Aquest sera el nom de la columna
-FROM credit_cards 
-LEFT JOIN transactions ON credit_cards.id = transactions.card_id -- Fem un join per obtenir informació de la taula transactions.
-WHERE transactions.declined IN ( -- Creem una subquery per seleccionar només les transaccions declinades, així el count serà només d'aquestes transaccions.
-	SELECT transactions.declined
-    FROM transactions
-	WHERE transactions.declined = "1")
-GROUP BY credit_cards.id; -- Agrupem el count de les transaccions pel id de les cards.
+CREATE TABLE credit_card_status AS
+SELECT
+    credit_cards.id AS Card_ID,
+    CASE
+        WHEN COUNT(transactions.declined) > 3 THEN 'Active'
+        ELSE 'Not active'
+    END AS 'Card Status'
+FROM credit_cards
+LEFT JOIN transactions ON credit_cards.id = transactions.card_id
+WHERE transactions.declined IN (
+    SELECT transactions.declined
+    FROM (
+        SELECT *
+        FROM transactions
+        ORDER BY transactions.timestamp DESC
+        LIMIT 3
+    ) last3
+    WHERE transactions.declined = '1'
+)
+GROUP BY card_id;
+
+SELECT *
+FROM credit_card_status;
 
 
 
